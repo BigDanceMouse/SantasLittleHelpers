@@ -12,7 +12,7 @@ import Foundation
 ///Apply function if not nil
 infix operator >>=: AdditionPrecedence
 
-func >>=<A,B>(_ val:A?, _ f:(A)->B)->B? {
+public func >>=<A,B>(_ val:A?, _ f:(A)->B)->B? {
     
     if let _val = val {
         return f(_val)
@@ -26,7 +26,7 @@ func >>=<A,B>(_ val:A?, _ f:(A)->B)->B? {
 ///Execute when not nil
 infix operator +?: AdditionPrecedence
 
-func +?<A>(_ val:A?, _ f:()->Void) -> A? {
+public func +?<A>(_ val:A?, _ f:()->Void) -> A? {
     
     if val != nil {
         f()
@@ -38,7 +38,7 @@ func +?<A>(_ val:A?, _ f:()->Void) -> A? {
 ///Execute when nil
 infix operator -?: AdditionPrecedence
 
-func -?<A>(_ val:A?, _ f:()->Void) -> A? {
+public func -?<A>(_ val:A?, _ f:()->Void) -> A? {
     
     if val == nil {
         f()
@@ -50,7 +50,7 @@ func -?<A>(_ val:A?, _ f:()->Void) -> A? {
 ///Function composition
 infix operator ..: MultiplicationPrecedence
 
-func ..<A,B,C>(lf:@escaping (A)->B, rf:@escaping (B)->C)->(A)->C {
+public func ..<A,B,C>(lf:@escaping (A)->B, rf:@escaping (B)->C)->(A)->C {
     return {
         rf(lf($0))
     }
@@ -61,14 +61,14 @@ func ..<A,B,C>(lf:@escaping (A)->B, rf:@escaping (B)->C)->(A)->C {
 ///Apply function
 infix operator ||>: LogicalDisjunctionPrecedence
 
-func ||><A,B>( _ f:(A)->B, _ x:A)->B {
+public func ||><A,B>( _ f:(A)->B, _ x:A)->B {
     return f(x)
 }
 
 
 
 ///Filp
-prefix func !<A,B,C>(f:@escaping (A,B)->C)->(B,A)->C {
+public prefix func !<A,B,C>(f:@escaping (A,B)->C)->(B,A)->C {
     return {
         return f($1,$0)
     }

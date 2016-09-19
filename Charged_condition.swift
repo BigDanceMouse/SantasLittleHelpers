@@ -11,7 +11,7 @@ import Foundation
 
 //MARK: - Charged Conditions
 
-extension Bool {
+public extension Bool {
     
     func onTrue(@noescape f:()->Void)->Bool{
         if self { f() }
